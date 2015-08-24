@@ -1,0 +1,55 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Phaser - Making your first game, part 2</title>
+    <script type="text/javascript" src="javascripts/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+
+    game.load.image('sky', 'images/sky.png');
+    game.load.image('ground', 'images/platform.png');
+    game.load.image('star', 'images/star.png');
+    game.load.spritesheet('dude', 'images/dude.png', 32, 48);
+
+}
+
+function create() {
+
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    game.add.sprite(0, 0, 'sky');
+
+    game.add.sprite(0, 0, 'star');
+
+    platforms = game.add.group();
+
+    platforms.enableBody = true;
+
+    var ground = platforms.create(0, game.world.height - 64, 'ground');
+
+    ground.scale.setTo(2, 2);
+
+    ground.body.immovable = true;
+
+    var ledge = platforms.create(400, 400, 'ground');
+}
+
+function update() {
+}
+
+</script>
+
+</body>
+</html>
